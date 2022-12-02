@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace ProductCustomers.Models {
@@ -9,8 +10,9 @@ namespace ProductCustomers.Models {
         public string pName {get; set;} = string.Empty;
 
         [Display(Name ="Product Price")]
+        [DataType(DataType.Currency)]
         [Required]
-        public double pPrice {get; set;}
+        public decimal pPrice {get; set;}
 
         public List<Order> Orders {get; set;} = default!; //Navigation Property Product can be in many Orders
 

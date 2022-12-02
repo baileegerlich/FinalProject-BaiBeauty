@@ -5,10 +5,12 @@ namespace ProductCustomers.Models {
         public int customerID {get; set;}
 
         [Display(Name ="First Name")]
+        [StringLength(60, MinimumLength = 3)]
         [Required]
         public string firstName {get; set;} = string.Empty;
 
         [Display(Name ="Last Name")]
+        [StringLength(60, MinimumLength = 3)]
         [Required]
         public string lastName {get; set;} = string.Empty;
 
@@ -27,6 +29,7 @@ namespace ProductCustomers.Models {
 
         public int customerID {get;set;} // PK, FK 2 to Product Table
         public Customer Customer {get; set;} = default!; //Navigation Property
+        
         public int orderNum {get;set;} 
         public DateTime orderDate {get; set;}
 
