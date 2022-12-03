@@ -20,17 +20,33 @@ namespace FinalProject_BaiBeauty.PagesProducts
 
         public IList<Product> Product { get;set; } = default!;
         
-        //Paging
+        //Paging support
         [BindProperty(SupportsGet = true)]
         public int PageNum {get;set;} = 1;
         public int PageSize {get;set;} =10;
+
+        // Sorting support
+        [BindProperty(SupportsGet =true)]
+        public string CurrentSort {get;set;}
         public async Task OnGetAsync()
-        {
-            Product = await _context.Products.Skip((PageNum -1)* PageSize).Take(PageSize).ToListAsync();
-            // if (_context.Products != null)
-            // {
-            //     Product = await _context.Products.ToListAsync();
-            // }
+        {   
+           
+            if (_context.Products != null)
+            {
+                 //Sorting query
+                var query = _context.Products.Select(p => p);
+                switch(CurrentSort){
+                    case "first_asc":
+                        query = query.OrderBy(p=> p.pName);
+                        break;
+                    case "first_desc":
+                        query = query.OrderByDescending(p=>p.pName);
+                        break;
+                }
+
+                Product = await query.Skip((PageNum -1)* PageSize).Take(PageSize).ToListAsync();
+
+            }
         }
     }
 }
