@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ProductCustomers.Models {
     public class Customer{
-        public int customerID {get; set;}
+        public int CustomerID {get; set;}
 
         [Display(Name ="First Name")]
         [StringLength(60, MinimumLength = 3)]
@@ -24,10 +24,10 @@ namespace ProductCustomers.Models {
     }
     
     public class Order{
-        public int productID {get; set;} // PK, FK 1 to Product Table
+        public int ProductID {get; set;} // PK, FK 1 to Product Table
         public Product Product {get; set;} = default!; //Navigation Property
 
-        public int customerID {get;set;} // PK, FK 2 to Product Table
+        public int CustomerID {get;set;} // PK, FK 2 to Product Table
         public Customer Customer {get; set;} = default!; //Navigation Property
         
         public int orderNum {get;set;} 

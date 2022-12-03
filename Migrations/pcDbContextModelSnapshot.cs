@@ -19,7 +19,7 @@ namespace FinalProjectBaiBeauty.Migrations
 
             modelBuilder.Entity("ProductCustomers.Models.Customer", b =>
                 {
-                    b.Property<int>("customerID")
+                    b.Property<int>("CustomerID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -37,17 +37,17 @@ namespace FinalProjectBaiBeauty.Migrations
                         .HasMaxLength(60)
                         .HasColumnType("TEXT");
 
-                    b.HasKey("customerID");
+                    b.HasKey("CustomerID");
 
-                    b.ToTable("Customer");
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("ProductCustomers.Models.Order", b =>
                 {
-                    b.Property<int>("productID")
+                    b.Property<int>("ProductID")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("customerID")
+                    b.Property<int>("CustomerID")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("orderDate")
@@ -56,16 +56,16 @@ namespace FinalProjectBaiBeauty.Migrations
                     b.Property<int>("orderNum")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("productID", "customerID");
+                    b.HasKey("ProductID", "CustomerID");
 
-                    b.HasIndex("customerID");
+                    b.HasIndex("CustomerID");
 
                     b.ToTable("Order");
                 });
 
             modelBuilder.Entity("ProductCustomers.Models.Product", b =>
                 {
-                    b.Property<int>("productID")
+                    b.Property<int>("ProductID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -76,22 +76,22 @@ namespace FinalProjectBaiBeauty.Migrations
                     b.Property<decimal>("pPrice")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("productID");
+                    b.HasKey("ProductID");
 
-                    b.ToTable("Product");
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("ProductCustomers.Models.Order", b =>
                 {
                     b.HasOne("ProductCustomers.Models.Customer", "Customer")
                         .WithMany("Orders")
-                        .HasForeignKey("customerID")
+                        .HasForeignKey("CustomerID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ProductCustomers.Models.Product", "Product")
                         .WithMany("Orders")
-                        .HasForeignKey("productID")
+                        .HasForeignKey("ProductID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

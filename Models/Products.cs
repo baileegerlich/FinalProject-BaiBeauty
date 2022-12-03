@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ProductCustomers.Models {
     public class Product{
-        public int productID {get; set;}
+        public int ProductID {get; set;}
 
         [Display(Name ="Product Name")]
         [Required]

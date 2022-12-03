@@ -19,7 +19,7 @@ public class BaiBeautyModel : PageModel
 
     public BaiBeautyModel (pcDbContext context, ILogger<BaiBeautyModel> logger)
     {
-        _context = _context; // Read in DbContext here
+        _context = context; // Read in DbContext here
         _logger = logger;
     }
 

@@ -10,7 +10,7 @@ namespace ProductCustomers.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Order>().HasKey(o => new {o.productID, o.customerID});
+            modelBuilder.Entity<Order>().HasKey(o => new {o.ProductID, o.CustomerID});
         }
 
         public DbSet<Product> Products {get; set;} = default!;

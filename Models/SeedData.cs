@@ -59,28 +59,18 @@ namespace ProductCustomers.Models
                 context.AddRange(customers);
 
                 List<Order> orders = new List<Order> {
-                    new Order {orderNum = 1, productID = 8,orderDate = DateTime.Parse("11/20/2022")},
-                    new Order {orderNum = 2, productID = 28,orderDate = DateTime.Parse("11/21/2022")},
-                    new Order {orderNum = 3, productID = 21,orderDate = DateTime.Parse("11/22/2022")},
-                    new Order {orderNum = 4, productID = 1,orderDate = DateTime.Parse("11/23/2022")},
-                    new Order {orderNum = 5, productID = 6,orderDate = DateTime.Parse("11/24/2022")},
-                    new Order {orderNum = 6, productID = 5,orderDate = DateTime.Parse("11/25/2022")},
-                    new Order {orderNum = 7, productID = 31,orderDate = DateTime.Parse("11/26/2022")},
-                    new Order {orderNum = 8, productID = 20,orderDate = DateTime.Parse("11/27/2022")},
-                    new Order {orderNum = 9, productID = 14,orderDate = DateTime.Parse("11/28/2022")},
-                    new Order {orderNum = 10, productID = 3,orderDate = DateTime.Parse("11/29/2022")},
-                    new Order {orderNum = 11, productID = 12,orderDate = DateTime.Parse("11/30/2022")},
-                    new Order {orderNum = 12, productID = 17,orderDate = DateTime.Parse("12/01/2022")},
-                    new Order {orderNum = 13, productID = 21,orderDate = DateTime.Parse("12/02/2022")},
-                    new Order {orderNum = 14, productID = 19,orderDate = DateTime.Parse("12/03/2022")},
-                    new Order {orderNum = 15, productID = 7,orderDate = DateTime.Parse("12/04/2022")},
-                    new Order {orderNum = 16, productID = 15,orderDate = DateTime.Parse("12/05/2022")},
-                    new Order {orderNum = 17, productID = 22,orderDate = DateTime.Parse("12/06/2022")},
-                    new Order {orderNum = 18, productID = 2,orderDate = DateTime.Parse("12/07/2022")},
-                };
-                context.AddRange(orders);
+                    new Order {CustomerID =1,orderNum = 1, ProductID = 8,orderDate = DateTime.Parse("11/20/2022")},
+                    new Order {CustomerID =2,orderNum = 2, ProductID = 28,orderDate = DateTime.Parse("11/21/2022")},
+                    new Order {CustomerID =3,orderNum = 3, ProductID = 21,orderDate = DateTime.Parse("11/22/2022")},
+                    new Order {CustomerID =4,orderNum = 4, ProductID = 1,orderDate = DateTime.Parse("11/23/2022")},
+                    new Order {CustomerID =5,orderNum = 5, ProductID = 6,orderDate = DateTime.Parse("11/24/2022")},
+                    new Order {CustomerID =6,orderNum = 6, ProductID = 5,orderDate = DateTime.Parse("11/25/2022")},
+                    new Order {CustomerID =7,orderNum = 7, ProductID = 30,orderDate = DateTime.Parse("11/26/2022")},
 
+                };
                 context.SaveChanges();
+                
+                context.AddRange(orders); 
             }
         }
     }

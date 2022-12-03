@@ -1,0 +1,61 @@
+@page
+@model FinalProject_BaiBeauty.PagesProducts.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].pName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].pPrice)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Product) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.pName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pPrice)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ProductID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ProductID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ProductID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<hr>
+@* Paging *@
+@{
+    var preDisabled="";
+    if(Model.PageNum <= 1){
+        preDisabled = "disabled";
+    }
+}
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item @preDisabled">
+        <a class="page-link" asp-page ="./Index" asp-route-PageNum ="@(Model.PageNum -1)">Previous</a>
+        </li>
+        <li class="page-item">
+        <a class="page-link"asp-page ="./Index" asp-route-PageNum ="@(Model.PageNum +1)">Next</a>
+        </li>
+    </ul>
+</nav>
+
