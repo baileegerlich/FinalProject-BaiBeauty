@@ -27,7 +27,7 @@ namespace FinalProject_BaiBeauty.PagesProducts
 
         // Sorting support
         [BindProperty(SupportsGet =true)]
-        public string CurrentSort {get;set;}
+        public string CurrentSort {get;set;} = string.Empty;
         public async Task OnGetAsync()
         {   
            
@@ -43,7 +43,7 @@ namespace FinalProject_BaiBeauty.PagesProducts
                         query = query.OrderByDescending(p=>p.pName);
                         break;
                 }
-
+                Product = await _context.Products.Include(p=> p.Orders).ThenInclude(c=> c.Customer).ToListAsync();
                 Product = await query.Skip((PageNum -1)* PageSize).Take(PageSize).ToListAsync();
 
             }

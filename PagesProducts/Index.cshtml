@@ -5,11 +5,25 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Index of Products</h1>
 
 <p>
     <a asp-page="Create">Create New</a>
 </p>
+<form method="post" class="searchForm">
+    <input type="text" name="searchString" />
+    <input type="submit" value="Search" />
+</form>
+
+
+@foreach(var item in Model.Product)
+{
+    <p>@Model.Product.</p>
+    <p>@article.Text</p>
+    <br />
+    <br />
+    <br />
+}
 <table class="table">
     <thead>
         <tr>
@@ -37,6 +51,17 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.pPrice)
+            </td>
+            <td>
+                @foreach (var customer in item.Orders)
+                {
+                    @customer.Customer.firstName
+                    @customer.Customer.lastName
+                    <br>
+                }
+                @if(item.Orders.Count ==0){
+                    @:No Order
+                }
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ProductID">Edit</a> |
