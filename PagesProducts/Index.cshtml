@@ -2,10 +2,13 @@
 @model FinalProject_BaiBeauty.PagesProducts.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Home";
 }
+<style>
+    
+</style>
 
-<h1>Index of Products</h1>
+<h1>Available Products</h1>
 
 <p>
     <a asp-page="Create">Create New</a>
@@ -16,14 +19,6 @@
 </form>
 
 
-@foreach(var item in Model.Product)
-{
-    <p>@Model.Product.</p>
-    <p>@article.Text</p>
-    <br />
-    <br />
-    <br />
-}
 <table class="table">
     <thead>
         <tr>
@@ -34,8 +29,14 @@
                     if(Model.CurrentSort == "first_asc"){
                         firstSort = "first_desc";
                     }
+                    var secSort = "sec_asc";
+                    if(Model.CurrentSort =="sec_asc"){
+                        secSort = "sec_desc";
+                    }
                 }
                 <a asp-page="./Index" asp-route-CurrentSort="@firstSort" asp-route-PageNum="@(Model.PageNum)">@Html.DisplayNameFor(model => model.Product[0].pName)</a>
+                <a asp-page="./Index" asp-route-CurrentSort="@secSort" asp-route-PageNum="@(Model.PageNum)">@Html.DisplayNameFor(model => model.Product[0].pPrice)</a>
+
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Product[0].pPrice)
