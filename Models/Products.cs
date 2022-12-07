@@ -12,7 +12,7 @@ namespace ProductCustomers.Models {
         [Display(Name ="Product Price")]
         [DataType(DataType.Currency)]
         [Required]
-        public decimal pPrice {get; set;}
+        public double pPrice {get; set;}
 
         public List<Order> Orders {get; set;} = default!; //Navigation Property Product can be in many Orders
 

@@ -31,6 +31,7 @@ namespace FinalProject_BaiBeauty.PagesProducts
         [BindProperty]
         [Display(Name ="Customer")]
         public int CustomerIdToAdd {get;set;}
+        //List Cusstomer/Dropdown
         public List<Customer>AllCustomers {get;set;} = default!;
         public SelectList CustomerDropDown{get;set;} = default!;
 
@@ -56,7 +57,7 @@ namespace FinalProject_BaiBeauty.PagesProducts
             return Page();
         }
         // OnPost for Delete Customer
-         public async Task<IActionResult> OnPostDeleteCourseAsync(int? id)
+         public async Task<IActionResult> OnPostDeleteCustomerAsync(int? id)
         {
             _logger.LogWarning($"OnPost: ProductID {id}, DROP Customer {CustomerIdToDelete}");
             if (id == null)

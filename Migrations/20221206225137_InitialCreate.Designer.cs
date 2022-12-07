@@ -11,7 +11,7 @@ using ProductCustomers.Models;
 namespace FinalProjectBaiBeauty.Migrations
 {
     [DbContext(typeof(pcDbContext))]
-    [Migration("20221203192254_InitialCreate")]
+    [Migration("20221206225137_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -76,8 +76,8 @@ namespace FinalProjectBaiBeauty.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<decimal>("pPrice")
-                        .HasColumnType("TEXT");
+                    b.Property<double>("pPrice")
+                        .HasColumnType("REAL");
 
                     b.HasKey("ProductID");
 

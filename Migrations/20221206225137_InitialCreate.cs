@@ -33,7 +33,7 @@ namespace FinalProjectBaiBeauty.Migrations
                     ProductID = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     pName = table.Column<string>(type: "TEXT", nullable: false),
-                    pPrice = table.Column<decimal>(type: "TEXT", nullable: false)
+                    pPrice = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {

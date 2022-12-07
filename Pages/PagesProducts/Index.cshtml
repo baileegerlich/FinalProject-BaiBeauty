@@ -29,19 +29,19 @@
                     if(Model.CurrentSort == "first_asc"){
                         firstSort = "first_desc";
                     }
+                }
+                <a asp-page="./Index" asp-route-CurrentSort="@firstSort" asp-route-PageNum="@(Model.PageNum)">@Html.DisplayNameFor(model => model.Product[0].pName)</a>
+
+            </th>
+            <th>
+                @{
                     var secSort = "sec_asc";
                     if(Model.CurrentSort =="sec_asc"){
                         secSort = "sec_desc";
                     }
+                    <a asp-page="./Index" asp-route-CurrentSort="@secSort" asp-route-PageNum="@(Model.PageNum)">@Html.DisplayNameFor(model => model.Product[0].pPrice)</a>
                 }
-                <a asp-page="./Index" asp-route-CurrentSort="@firstSort" asp-route-PageNum="@(Model.PageNum)">@Html.DisplayNameFor(model => model.Product[0].pName)</a>
-                <a asp-page="./Index" asp-route-CurrentSort="@secSort" asp-route-PageNum="@(Model.PageNum)">@Html.DisplayNameFor(model => model.Product[0].pPrice)</a>
-
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Product[0].pPrice)
-            </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -84,10 +84,10 @@
 <nav aria-label="Page navigation example">
     <ul class="pagination">
         <li class="page-item @preDisabled">
-        <a class="page-link" asp-page ="./Index" asp-route-PageNum ="@(Model.PageNum -1)" asp-route-CurrentSort="@firstSort">Previous</a>
+        <a class="page-link" asp-page ="./Index" asp-route-PageNum ="@(Model.PageNum -1)" asp-route-CurrentSort=@(Model.CurrentSort)>Previous</a>
         </li>
         <li class="page-item">
-        <a class="page-link"asp-page ="./Index" asp-route-PageNum ="@(Model.PageNum +1)" asp-route-CurrentSort="@firstSort">Next</a>
+        <a class="page-link"asp-page ="./Index" asp-route-PageNum ="@(Model.PageNum +1)" asp-route-CurrentSort=@(Model.CurrentSort)>Next</a>
         </li>
     </ul>
 </nav>
