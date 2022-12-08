@@ -33,8 +33,7 @@ namespace FinalProject_BaiBeauty.PagesProducts
         public int CustomerIdToAdd {get;set;}
         //List Customer/Dropdown
         public List<Customer>AllCustomers {get;set;} = default!;
-        [BindProperty]
-        [Required]
+        
         public SelectList CustomerDropDown{get;set;} = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
@@ -60,7 +59,7 @@ namespace FinalProject_BaiBeauty.PagesProducts
         // OnPost for Delete Customer
          public async Task<IActionResult> OnPostDeleteCustomerAsync(int? id)
         {
-            _logger.LogWarning($"OnPost: ProductID {id}, DROP Customer {CustomerIdToDelete}");
+            _logger.LogWarning($"OnPost: ProductID {id}, DELETE Customer {CustomerIdToDelete}");
             if (id == null)
             {
                 return NotFound();
@@ -93,7 +92,7 @@ namespace FinalProject_BaiBeauty.PagesProducts
         }
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            _logger.LogWarning($"OnPost: CustomerID {id}, ADD Customer {CustomerIdToAdd} {}");
+            _logger.LogWarning($"OnPost: CustomerID {id}, ADD Customer {CustomerIdToAdd}");
             if (CustomerIdToAdd == 0)
             {
                 ModelState.AddModelError("CustomerIdToAdd", "This field is a required field.");

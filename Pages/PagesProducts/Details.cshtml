@@ -46,9 +46,10 @@
                     <input type="hidden" asp-for="CustomerIdToDelete" value="@customer.Customer.CustomerID" />
                 
                     <li>
-                        @customer.Customer.firstName <input type="submit" Value="Drop" class="btn btn-danger btn-sm my-1" asp-page-handler="DeleteCustomer" asp-route-id="@Model.Product.ProductID">
-                        @customer.Customer.lastName <input type="submit" Value="Drop" class="btn btn-danger btn-sm my-1" asp-page-handler="DeleteCustomer" asp-route-id="@Model.Product.ProductID">
-                        @customer.Customer.cEmail <input type="submit" Value="Drop" class="btn btn-danger btn-sm my-1" asp-page-handler="DeleteCustomer" asp-route-id="@Model.Product.ProductID">
+                        @customer.Customer.firstName
+                        @customer.Customer.lastName,
+                        @customer.Customer.cEmail <input type="submit" Value="Delete" class="btn btn-danger btn-sm my-1" asp-page-handler="DeleteCustomer" asp-route-id="@Model.Product.ProductID">
+                    
                     </li>
                 </form>
             }
@@ -67,7 +68,7 @@
             </div>
             <br>
             <div class="form-group">
-                <input type="submit" value="Add Customer" class="btn btn-primary" asp-page-handler="" asp-route-id="@Model.Product.Orders"/>
+                <input type="submit" value="Add Customer" class="btn btn-primary" asp-page-handler="" asp-route-id="@Model.Product.ProductID"/>
             </div>
         </form>
     </div>

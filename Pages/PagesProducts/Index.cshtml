@@ -70,9 +70,9 @@
             <td>
                 @foreach (var customer in item.Orders)
                 {
-                    @customer.Customer.firstName
-                    @customer.Customer.lastName
+                    @customer.Customer.firstName 
                     <br>
+                    @customer.Customer.lastName
                 }
                 @if(item.Orders.Count ==0){
                     @:
