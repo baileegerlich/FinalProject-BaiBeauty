@@ -30,7 +30,7 @@ namespace FinalProject_BaiBeauty.PagesProducts
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.Products == null || Product == null)
+          if (_context.Products == null || Product == null)
             {
                 return Page();
             }

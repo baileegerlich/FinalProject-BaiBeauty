@@ -48,7 +48,7 @@ namespace FinalProject_BaiBeauty.PagesProducts
                 var products = from p in _context.Products
                     select p;
                 if(SearchString != null){
-                    products = products.Where(p=>p.pName.Contains(SearchString) || p.pName.Contains(SearchString));
+                    products = products.Where(p=>p.pName.Contains(SearchString));
                 }
                 Product = await products.ToListAsync();
                 var query = products.Select(p=>p);

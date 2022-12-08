@@ -31,21 +31,28 @@ namespace FinalProject_BaiBeauty.PagesProducts
         [BindProperty]
         [Display(Name ="Customer")]
         public int CustomerIdToAdd {get;set;}
-        //List Cusstomer/Dropdown
+        //List Customer/Dropdown
         public List<Customer>AllCustomers {get;set;} = default!;
         public SelectList CustomerDropDown{get;set;} = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
-        {
-            if (id == null || _context.Products == null)
+        {   
+            //Add Customer
+            _logger.LogWarning($"OnPost: ProductID {id}, ADD Customer {CustomerIdToAdd}");
+            if (CustomerIdToAdd == 0)
+            {
+                ModelState.AddModelError("CourseIdToAdd", "This field is a required field.");
+                return Page();
+            }
+            if (id == null)
             {
                 return NotFound();
             }
 
             var product = await _context.Products.Include(o=> o.Orders).ThenInclude(c=>c.Customer).FirstOrDefaultAsync(m => m.ProductID == id);
-            //Add CUstomer
             AllCustomers = await _context.Customers.ToListAsync();
             CustomerDropDown = new SelectList(AllCustomers, "CustomerID","firstName","lastName");
+
             if (product == null)
             {
                 return NotFound();
@@ -54,7 +61,18 @@ namespace FinalProject_BaiBeauty.PagesProducts
             {
                 Product = product;
             }
-            return Page();
+             if (!_context.Order.Any(sc => sc.CustomerID == CustomerIdToAdd && sc.ProductID == id.Value))
+            {
+                Order customerToAdd = new Order { ProductID = id.Value, CustomerID = CustomerIdToAdd};
+                _context.Add(CustomerIdToAdd);
+                _context.SaveChanges();
+            }
+            else
+            {
+                _logger.LogWarning("Customer is already in this order");
+            }
+
+            return RedirectToPage(new {id = id});
         }
         // OnPost for Delete Customer
          public async Task<IActionResult> OnPostDeleteCustomerAsync(int? id)
@@ -90,46 +108,7 @@ namespace FinalProject_BaiBeauty.PagesProducts
 
             return RedirectToPage(new {id = id});
         }
-        // OnPost for customer
-         public async Task<IActionResult> OnPostAsync(int? id)
-        {
-            _logger.LogWarning($"OnPost: ProductID {id}, ADD Customer {CustomerIdToAdd}");
-            if (CustomerIdToAdd == 0)
-            {
-                ModelState.AddModelError("CourseIdToAdd", "This field is a required field.");
-                return Page();
-            }
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var product = await _context.Products.Include(s => s.Orders!).ThenInclude(sc => sc.Customer).FirstOrDefaultAsync(m => m.ProductID == id);            
-            AllCustomers = await _context.Customers.ToListAsync();
-            CustomerDropDown = new SelectList(AllCustomers, "CustomerID", "firstName","lastName");
-
-            if (product == null)
-            {
-                return NotFound();
-            }
-            else
-            {
-                Product = product;
-            }
-
-            if (!_context.Order.Any(sc => sc.CustomerID == CustomerIdToAdd && sc.ProductID == id.Value))
-            {
-                Order customerToAdd = new Order { ProductID = id.Value, CustomerID = CustomerIdToAdd};
-                _context.Add(CustomerIdToAdd);
-                _context.SaveChanges();
-            }
-            else
-            {
-                _logger.LogWarning("Customer is already in this order");
-            }
-
-            return RedirectToPage(new {id = id});
-        }
+       
         
     }
 }

@@ -4,6 +4,21 @@
 @{
     ViewData["Title"] = "Details";
 }
+<style>
+    header{
+        background-color: #6543B5;
+    }
+    body{
+        margin: auto;
+        padding: 10px;
+        background-color: #D6C8F6;
+        font-family: 'Times New Roman', Times, serif;
+    }
+    a{  
+        text-decoration: none;
+        color: black;
+    }
+</style>
 
 <h1>Details</h1>
 
@@ -23,18 +38,19 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Product.pPrice)
         </dd>
+
         <ul>
-            @foreach (var customer in Model.Product.Orders)
+            @foreach (var customer in Model.Product.Orders!)
             {   
                 <form method = "post">
                     <input type="hidden" asp-for="CustomerIdToDelete" value="@customer.Customer.CustomerID" />
-                </form>
-                <li>
-                    @customer.Customer.firstName <input type="submit" Value="Drop" class="btn btn-danger btn-sm my-1" asp-page-handler="DeleteCustomer" asp-route-id="@Model.Product.ProductID">
-                    @customer.Customer.lastName <input type="submit" Value="Drop" class="btn btn-danger btn-sm my-1" asp-page-handler="DeleteCustomer" asp-route-id="@Model.Product.ProductID">
-                    @customer.Customer.cEmail <input type="submit" Value="Drop" class="btn btn-danger btn-sm my-1" asp-page-handler="DeleteCustomer" asp-route-id="@Model.Product.ProductID">
-                </li>
                 
+                    <li>
+                        @customer.Customer.firstName <input type="submit" Value="Drop" class="btn btn-danger btn-sm my-1" asp-page-handler="DeleteCustomer" asp-route-id="@Model.Product.ProductID">
+                        @customer.Customer.lastName <input type="submit" Value="Drop" class="btn btn-danger btn-sm my-1" asp-page-handler="DeleteCustomer" asp-route-id="@Model.Product.ProductID">
+                        @customer.Customer.cEmail <input type="submit" Value="Drop" class="btn btn-danger btn-sm my-1" asp-page-handler="DeleteCustomer" asp-route-id="@Model.Product.ProductID">
+                    </li>
+                </form>
             }
         </ul>
     </dl>
@@ -49,6 +65,7 @@
                 </select>
                 <span asp-validation-for="CustomerIdToAdd" class="text-danger"></span>
             </div>
+            <br>
             <div class="form-group">
                 <input type="submit" value="Add Customer" class="btn btn-primary" asp-page-handler="" asp-route-id="@Model.Product.Orders"/>
             </div>
