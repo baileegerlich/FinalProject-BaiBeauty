@@ -11,7 +11,7 @@ using ProductCustomers.Models;
 namespace FinalProjectBaiBeauty.Migrations
 {
     [DbContext(typeof(pcDbContext))]
-    [Migration("20221206225137_InitialCreate")]
+    [Migration("20221209002520_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

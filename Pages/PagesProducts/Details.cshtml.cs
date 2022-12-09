@@ -76,7 +76,7 @@ namespace FinalProject_BaiBeauty.PagesProducts
                 Product = product;
             }
 
-            Order customerToDrop = _context.Order.Find(CustomerIdToDelete, id.Value)!;
+            Order customerToDrop = _context.Order.Find(id.Value, CustomerIdToDelete)!;
 
             if (customerToDrop != null)
             {
